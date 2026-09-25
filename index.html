@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Portfolio — Scroll Up</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-theme="dark">
+
+  <nav>
+    <div class="name">S. Studio</div>
+    <ul>
+      <li><a href="#work-3">Work</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#hero">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="hint">
+    <svg width="18" height="12" viewBox="0 0 18 12" fill="none"><path d="M1 11L9 1L17 11" stroke="currentColor" stroke-width="1.4"/></svg>
+    Scroll up to begin
+  </div>
+
+  <!-- DOM order top→bottom is intentionally reversed: the newest / final
+       content sits at the TOP, and the starting content sits at the BOTTOM.
+       The page loads scrolled to the bottom, so scrolling up moves the
+       visitor forward through the story. -->
+
+  <section id="about">
+    <div class="caption">
+      <h2>About</h2>
+      <p>Editorial &amp; portrait photography — available worldwide</p>
+    </div>
+  </section>
+
+  <section id="work-3" style="--g1:#3a3f4b; --g2:#151719;">
+    <div class="panel"></div>
+    <div class="caption">
+      <h2>Nocturne, 2026</h2>
+      <p>Series 03</p>
+    </div>
+  </section>
+
+  <section id="work-2" style="--g1:#5a4634; --g2:#1b1712;">
+    <div class="panel"></div>
+    <div class="caption">
+      <h2>Golden Hour</h2>
+      <p>Series 02</p>
+    </div>
+  </section>
+
+  <section id="work-1" style="--g1:#4a5049; --g2:#14161a;">
+    <div class="panel"></div>
+    <div class="caption">
+      <h2>Quiet Rooms</h2>
+      <p>Series 01</p>
+    </div>
+  </section>
+
+  <section id="hero">
+    <div class="caption">
+      <h1>SALMA — STYLE</h1>
+      <p>Photography Portfolio</p>
+    </div>
+  </section>
+
+  <div id="bottom-anchor"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

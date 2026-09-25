@@ -1,0 +1,65 @@
+:root{
+  --bg:#0b0b0c; --fg:#f2f0ec; --muted:#9a968f; --accent:#c9c2b4;
+  box-sizing:border-box;
+  padding-top: env(safe-area-inset-top,0px);
+  padding-bottom: env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){ --bg:#f7f5f1; --fg:#141312; --muted:#6b665f; --accent:#3a362f; }
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+html{scroll-padding-top: env(safe-area-inset-top,0px); scroll-behavior:smooth;}
+body{
+  background:var(--bg); color:var(--fg);
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  overflow-x:hidden;
+}
+
+nav{
+  position:fixed; top:0; left:0; right:0;
+  padding: calc(1.4rem + env(safe-area-inset-top,0px)) 2rem 1.4rem;
+  display:flex; justify-content:space-between; align-items:center;
+  z-index:50; mix-blend-mode:difference;
+}
+nav .name{ font-size:0.95rem; letter-spacing:0.25em; text-transform:uppercase; color:#f2f0ec; }
+nav ul{ list-style:none; display:flex; gap:1.6rem; }
+nav a{ color:#f2f0ec; text-decoration:none; font-size:0.75rem; letter-spacing:0.15em; text-transform:uppercase; opacity:0.85; }
+nav a:hover{ opacity:1; }
+
+.hint{
+  position:fixed; bottom:1.2rem; left:50%; transform:translateX(-50%);
+  font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase;
+  color:var(--muted); z-index:50; display:flex; flex-direction:column; align-items:center; gap:0.4rem;
+  opacity:0.8; pointer-events:none; transition:opacity 0.3s ease;
+}
+.hint svg{ animation: float 1.6s ease-in-out infinite; }
+@keyframes float{ 0%,100%{transform:translateY(0);} 50%{transform:translateY(-6px);} }
+
+section{
+  height:100vh; width:100%;
+  display:flex; align-items:center; justify-content:center;
+  position:relative; text-align:center; padding:2rem;
+}
+
+.panel{
+  position:absolute; inset:0;
+  background: linear-gradient(160deg, var(--g1), var(--g2));
+  opacity:0.9;
+}
+.caption{ position:relative; z-index:2; }
+.caption h2{
+  font-size:clamp(1.6rem, 5vw, 3.4rem); font-weight:300; letter-spacing:0.05em;
+  color:#f2f0ec; text-shadow:0 2px 20px rgba(0,0,0,0.4);
+}
+.caption p{
+  margin-top:0.8rem; font-size:0.8rem; letter-spacing:0.2em; text-transform:uppercase;
+  color:#e5e1d8; opacity:0.85;
+}
+
+#bottom-anchor{ height:1px; }
+
+#hero{ background:var(--bg); }
+#hero .caption h1{
+  font-size:clamp(2.2rem, 7vw, 5rem); font-weight:200; letter-spacing:0.08em; color:var(--fg);
+}
+#hero .caption p{ margin-top:1rem; color:var(--muted); font-size:0.85rem; letter-spacing:0.15em; }
