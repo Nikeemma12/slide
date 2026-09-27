@@ -59,12 +59,31 @@ function closeLightbox() {
 
 // Click the picture: toggle full-screen zoom. Autoplay pauses while zoomed
 // so the photo doesn't change mid-inspection, and resumes once zoomed out.
+let suppressClick = false;
 lbImage.addEventListener('click', (e) => {
   e.stopPropagation();
+  if (suppressClick) { suppressClick = false; return; }
   isZoomed = !isZoomed;
   lbImage.classList.toggle('zoomed', isZoomed);
   if (isZoomed) stopAutoplay(); else startAutoplay();
 });
+
+// Swipe left/right on touch devices to move to the next/previous picture.
+let touchStartX = 0, touchStartY = 0;
+lbImage.addEventListener('touchstart', (e) => {
+  touchStartX = e.touches[0].clientX;
+  touchStartY = e.touches[0].clientY;
+}, { passive: true });
+
+lbImage.addEventListener('touchend', (e) => {
+  const dx = e.changedTouches[0].clientX - touchStartX;
+  const dy = e.changedTouches[0].clientY - touchStartY;
+  if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
+    if (dx < 0) next(); else prev();
+    if (!isZoomed) startAutoplay();
+    suppressClick = true; // this was a swipe, not a tap — don't toggle zoom
+  }
+}, { passive: true });
 
 // Click the dark backdrop (outside the picture) to close.
 lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
